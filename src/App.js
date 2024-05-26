@@ -8,7 +8,7 @@ const App = () => {
   const start = () => {
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
-      setTime(prev => prev + 1);
+      setTime(prev => prev + 100);
     }, 100);
   };
 
@@ -23,9 +23,9 @@ const App = () => {
   };
 
   const formatTime = (timeInSeconds) => {
-    const minute = Math.floor(timeInSeconds / (60 * 100));
-    const seconds = Math.floor(timeInSeconds /100 % 60);
-    const millisecond = timeInSeconds % 10
+    const minute = Math.floor(timeInSeconds / (60 * 1000));
+    const seconds = Math.floor((timeInSeconds % (60 * 1000)) / 1000);
+    const millisecond = ((timeInSeconds % 1000) /10);
     return `${String(minute).padStart(2, '0')} : ${String(seconds).padStart(2, '0')} : ${String(millisecond).padStart(2, '0')}`;
   };
 
