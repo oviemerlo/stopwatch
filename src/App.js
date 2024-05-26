@@ -1,9 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const App = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const intervalRef = useRef();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+    
+    return () => {  window.removeEventListener('resize', handleResize);}
+  }, [])
+  
+  
 
   const start = () => {
     setIsRunning(true);
@@ -40,6 +54,7 @@ const App = () => {
         )}
 
         <button  className='reset' onClick={reset}>Reset</button>
+        <p> {windowWidth} </p>
       </div>
     </div>
   );
