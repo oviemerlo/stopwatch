@@ -54,7 +54,7 @@ const App = () => {
         )}
 
         <button  className='reset' onClick={reset}>Reset</button>
-        <p> {windowWidth} </p>
+        
       </div>
     </div>
   );
